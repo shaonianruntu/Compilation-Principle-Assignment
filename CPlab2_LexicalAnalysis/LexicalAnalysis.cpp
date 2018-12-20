@@ -27,8 +27,6 @@ int keyword_num[9] = {
 char symbol[9] = { '+','-','*','/',';','(',')','{','}'};
 //对应的种码值
 int symbol_num[9] = { 21,22,23,24,25,26,27,28,29 };
-//错误命名
-string err_mess = "";
 //判断是否为字母 
 bool IsLetter(char ch)
 {
@@ -152,9 +150,7 @@ int main()
 			str = strtok(NULL, delims);
 		}
 	}
-	if(err_mess != "") {
-		printf("%s", err_mess.c_str());
-	}
+
 	return 0;
 }
 
@@ -208,21 +204,23 @@ void Scanner(char *str) {
 		if (IsDigit(*(str + i)) && (!flag))
 		{
 			if(IsLetter(*(str + i + 1))) {
-				err_mess += *(str + 1);
+				Token += *(str + i);
 				int tempIndex = 1;
 				while(IsLetter(*(str + i + tempIndex))) {
-					err_mess += *(str + i + tempIndex);
+					Token += *(str + i + tempIndex);
 				}
-				err_mess += "\n";
+				printf("<error: %s wrong identifier>", Token.c_str());
+				Token = "";
+			} else {
+				while (IsDigit(*(str + i)))
+				{
+					Token += *(str + i);
+					i++;
+				}
+				type = NUM;
+				printf("< %s , %d >\n", Token.c_str(), type);
+				Token = "";
 			}
-			while (IsDigit(*(str + i)))
-			{
-				Token += *(str + i);
-				i++;
-			}
-			type = NUM;
-			printf("< %s , %d >\n", Token.c_str(), type);
-			Token = "";
 		}
 
 		//<,<=,<>

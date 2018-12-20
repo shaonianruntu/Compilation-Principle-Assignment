@@ -153,7 +153,7 @@ int main()
 		}
 	}
 	if(err_mess != "") {
-		cout<<err_mess<<endl;
+		printf("%s", err_mess.c_str());
 	}
 	return 0;
 }

@@ -6,7 +6,7 @@ int main()
     Var var_b = 15;
 
     if (const_a > 5){
-        var_b = var_b + 1;
+        1var_b = var_b + 1;
     }
     else
         var_b = var_b - 4;
@@ -15,7 +15,7 @@ int main()
         /* test */
     } while(var_b > 5);
 
-    a, b, c = 0;
+    6a, b, c = 0;
     abc = 0;
     
     return 0;

@@ -72,7 +72,7 @@ int main()
 	printf("词法分析结果如下：\n");
 	printf("******************************\n");
 
-	while ((gets_s(instr)) != NULL)
+	while ((gets(instr)) != NULL)
 	{
 		HandleSpace(instr);
 		prePro();

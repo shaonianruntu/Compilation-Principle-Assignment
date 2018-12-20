@@ -207,11 +207,11 @@ void Scanner(char *str) {
 
 		if (IsDigit(*(str + i)) && (!flag))
 		{
-			if(IsLetter(*(str + i + 1)) {
+			if(IsLetter(*(str + i + 1))) {
 				err_mess += *(str + 1);
 				int tempIndex = 1;
 				while(IsLetter(*(str + i + tempIndex))) {
-					err_mess += *(str + i + tempIndex));
+					err_mess += *(str + i + tempIndex);
 				}
 				err_mess += "\n";
 			}

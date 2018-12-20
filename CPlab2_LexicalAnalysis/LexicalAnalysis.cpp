@@ -27,11 +27,12 @@ int keyword_num[9] = {
 char symbol[9] = { '+','-','*','/',';','(',')','{','}'};
 //对应的种码值
 int symbol_num[9] = { 21,22,23,24,25,26,27,28,29 };
-
+//错误命名
+string err_mess = "";
 //判断是否为字母 
 bool IsLetter(char ch)
 {
-	if ((ch >= 'a'&&ch <= 'z') || (ch >= 'A'&&ch <= 'Z'))
+	if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
 		return true;
 	return false;
 }
@@ -130,7 +131,7 @@ int main()
 	printf("词法分析结果如下：\n");
 	printf("******************************\n");
 
-	while ((gets_s(instr)) != NULL)
+	while ((gets(instr)) != NULL)
 	{
 		HandleSpace(instr);
 		prePro();
@@ -151,7 +152,9 @@ int main()
 			str = strtok(NULL, delims);
 		}
 	}
-
+	if(err_mess != "") {
+		cout<<err_mess<<endl;
+	}
 	return 0;
 }
 
@@ -171,7 +174,7 @@ void Scanner(char *str) {
 			}
 		}
 		//注释处理: */,注释区域结束 
-		if (*(str + i) == '*'&&flag)
+		if (*(str + i) == '*' && flag)
 		{
 			if (*(str + i + 1) == '/')
 			{
@@ -204,6 +207,14 @@ void Scanner(char *str) {
 
 		if (IsDigit(*(str + i)) && (!flag))
 		{
+			if(IsLetter(*(str + i + 1)) {
+				err_mess += *(str + 1);
+				int tempIndex = 1;
+				while(IsLetter(*(str + i + tempIndex))) {
+					err_mess += *(str + i + tempIndex));
+				}
+				err_mess += "\n";
+			}
 			while (IsDigit(*(str + i)))
 			{
 				Token += *(str + i);

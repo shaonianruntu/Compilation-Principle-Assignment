@@ -7,13 +7,13 @@ using namespace std;
 #define ID 15
 #define NUM 16
 
-//存放处理后的字符串 
+
 char tempstr[255] = {};
-//空格标志 
+
 bool temp = false;
-//临时数组
+
 char word[255] = {};
-//keyword关键字 
+
 string keyword[9] = {
 	"Const", "Var", "if", "else", "then",
 	"while", "do", "begin", "end"
@@ -23,13 +23,13 @@ int keyword_num[9] = {
 	1,2,3,4,5,
 	6,7,8,9 
 };
-//部分运算符，定界符等 
+
 char symbol[9] = { '+', '-', '*', '/', ';', '(' ,')' ,'{' ,'}'};
-//对应的种码值
+
 int symbol_num[9] = { 21,22,23,24,25,26,27,28,29 };
-// 判断是否出错
+
 bool err_flag = false;
-//判断是否为字母 
+ 
 bool IsLetter(char ch)
 {
 	if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
@@ -37,7 +37,7 @@ bool IsLetter(char ch)
 	return false;
 }
 
-//判断是否为数字 
+ 
 bool IsDigit(char ch)
 {
 	if (ch >= '0'&&ch <= '9')
@@ -45,7 +45,7 @@ bool IsDigit(char ch)
 	return false;
 }
 
-//判断是否为定界符等
+
 int IsSymbol(char ch)
 {
 	for (int i = 0; i<9; i++)
@@ -56,7 +56,7 @@ int IsSymbol(char ch)
 	return -1;
 }
 
-//判断是否为关键字 
+ 
 int IsKeyword(string str)
 {
 	for (int i = 0; i<26; i++)
@@ -66,15 +66,15 @@ int IsKeyword(string str)
 			return i;
 		}
 	}
-	//不是关键字即为ID
+	
 	return ID;
 }
 
-//空格处理
+
 void HandleSpace(char a[])
 {
 	int j = 0;
-	memset(word, 0, 255);//需要清空，不然可能残留上次的字符串
+	memset(word, 0, 255);
 	temp = false;
 	for (int i = 0; i < strlen(a); i++)
 	{
@@ -95,7 +95,7 @@ void HandleSpace(char a[])
 	}
 }
 
-//处理"//"注释
+
 void prePro()
 {
 	int j = 0;
@@ -120,11 +120,11 @@ void Scanner(char *str);
 
 int main()
 {
-	char instr[255] = {}; //接收输入字符串 
-	bool flag = false; //多行注释标志,false为未处于注释区域 
-	string Token;//存放字符串 
-	char *str = NULL;//存放每行的字符串 
-	char delims[] = " ";//分割标志 
+	char instr[255] = {};
+	bool flag = false;  
+	string Token; 
+	char *str = NULL;
+	char delims[] = " ";
 	freopen("test.cpp", "r", stdin);
 	freopen("result.txt", "w", stdout); 
 
@@ -136,11 +136,11 @@ int main()
 		HandleSpace(instr);
 		prePro();
 
-		str = strtok(tempstr, delims);//分割字符串 
+		str = strtok(tempstr, delims);
 			
 		while (str != NULL)
 		{
-			//头文件，宏定义
+			
 			if (*(str) == '#')
 			{
 				printf("#\n");
@@ -160,8 +160,8 @@ int main()
 }
 
 void Scanner(char *str) {
-	bool flag = false; //多行注释标志,false为未处于注释区域 
-	string Token;//存放字符串 
+	bool flag = false; 
+	string Token; 
 	int type = 0;
 
 	for (int i = 0; i<strlen(str); i++)
@@ -174,7 +174,7 @@ void Scanner(char *str) {
 				break;
 			}
 		}
-		//注释处理: */,注释区域结束 
+		
 		if (*(str + i) == '*' && flag)
 		{
 			if (*(str + i + 1) == '/')
@@ -185,7 +185,6 @@ void Scanner(char *str) {
 			}
 		}
 
-		//标识符，关键词 
 		if (IsLetter(*(str + i)) && (!flag))
 		{
 			while (IsLetter(*(str + i)) || IsDigit(*(str + i)) || *(str + i) == '_')

@@ -1,22 +1,19 @@
-#include<stdio.h>
-int main()
-{
-    //test
-    Const const_a = 10;
-    Var var_b = 15;
-
-    if (const_a > 5){
-        1var_b = var_b + 1;
-    }
-    else
-        var_b = var_b - 4;
-
-    do {
-        /* test */
-    } while(var_b > 5);
-
-    6a, b, c = 0;
-    abc = 0;
+Const x=8,y=7;
+Var a,b,c;
+begin
+   a=b+x;
     
-    return 0;
-}
+    if a>0
+       then 
+       begin
+         c=y -;
+         a=a+2;
+       end
+    else
+       begi
+         c=a+y;
+       end
+   
+    while a>0
+      do  a=a-1;
+end

@@ -1,0 +1,2 @@
+const x=8,y=7;var a,b,c;begin a=2*x;;b=a+x+y;;c=a+3*b;end
+const x=8,y=7;var a,b,c;begin a=b+x;;if a>0 then begin c=y -1;;a=a+2;end else begin c=a+y;end;while a>0 do a=a-1;end
